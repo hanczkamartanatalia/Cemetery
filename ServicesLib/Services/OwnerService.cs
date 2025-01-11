@@ -8,24 +8,9 @@ using System.Threading.Tasks;
 
 namespace ServicesLib.Services
 {
-    public class OwnerService : Service<OwnerService>, ICrud<Owner>
+    public class OwnerService : Service<OwnerService, Owner>, IValidate<Owner>
     {
-        Owner ICrud<Owner>.Create(Owner entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Owner ICrud<Owner>.Delete(Owner entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Owner ICrud<Owner>.Read(Owner entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Owner ICrud<Owner>.Update(Owner entity)
+        public bool Validate(Owner entity)
         {
             throw new NotImplementedException();
         }

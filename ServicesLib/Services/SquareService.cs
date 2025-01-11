@@ -8,24 +8,9 @@ using System.Threading.Tasks;
 
 namespace ServicesLib.Services
 {
-    public class SquareService : Service<SquareService>, ICrud<Square>
+    public class SquareService : Service<SquareService, Square>, IValidate<Square>
     {
-        Square ICrud<Square>.Create(Square entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Square ICrud<Square>.Delete(Square entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Square ICrud<Square>.Read(Square entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Square ICrud<Square>.Update(Square entity)
+        public bool Validate(Square entity)
         {
             throw new NotImplementedException();
         }

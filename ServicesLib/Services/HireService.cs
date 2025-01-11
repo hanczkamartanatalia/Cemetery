@@ -8,24 +8,9 @@ using System.Threading.Tasks;
 
 namespace ServicesLib.Services
 {
-    public class HireService : Service<HireService>, ICrud<Hire>
+    public class HireService : Service<HireService, Hire>, IValidate<Hire>
     {
-        Hire ICrud<Hire>.Create(Hire entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Hire ICrud<Hire>.Delete(Hire entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Hire ICrud<Hire>.Read(Hire entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Hire ICrud<Hire>.Update(Hire entity)
+        public bool Validate(Hire hire)
         {
             throw new NotImplementedException();
         }

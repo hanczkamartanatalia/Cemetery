@@ -9,9 +9,9 @@ namespace EntitiesLib.Entities
 {
     public class Employee : Person, IContact, IUser
     {
-        string IContact.Phone { get; set; } = default!;
-        string IContact.Email { get; set; } = default!;
-        string IUser.Login { get; set; } = default!;
-        byte[] IUser.Password { get; set; } = default!;
+        public string Phone { get; set; } = default!;
+        public string Email { get; set; } = default!;
+        public string Login { get; set; } = default!;
+        public string Password { get; set; } = default!;
     }
 }

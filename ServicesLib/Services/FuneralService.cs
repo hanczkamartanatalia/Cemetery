@@ -8,24 +8,9 @@ using System.Threading.Tasks;
 
 namespace ServicesLib.Services
 {
-    public class FuneralService : Service<FuneralService>, ICrud<Funeral>
+    public class FuneralService : Service<FuneralService, Funeral>, IValidate<Funeral>
     {
-        Funeral ICrud<Funeral>.Create(Funeral entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Funeral ICrud<Funeral>.Delete(Funeral entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Funeral ICrud<Funeral>.Read(Funeral entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Funeral ICrud<Funeral>.Update(Funeral entity)
+        public bool Validate(Funeral funeral)
         {
             throw new NotImplementedException();
         }

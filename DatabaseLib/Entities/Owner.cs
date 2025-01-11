@@ -9,7 +9,7 @@ namespace EntitiesLib.Entities
 {
     public class Owner : Person, IContact
     {
-        string IContact.Phone { get; set; } = default!;
-        string IContact.Email { get; set; } = default!;
+        public string Phone { get; set; } = default!;
+        public string Email { get; set; } = default!;
     }
 }

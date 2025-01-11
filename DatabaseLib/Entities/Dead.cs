@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace EntitiesLib.Entities
 {
-    public class Dead : IEntity, IPersonality
+    public class Dead : Entity, IPersonality
     {
-        int IEntity.Id { get; set; }
-        bool IEntity.IsDeleted { get; set; }
-        string IPersonality.FirstName { get; set; } = default!;
-        string IPersonality.LastName { get; set; } = default!;
+        public string FirstName { get; set; } = default!;
+        public string LastName { get; set; } = default!;
+        public DateTime DateTimeDeath { get; set; }
     }
 }

@@ -8,24 +8,9 @@ using System.Threading.Tasks;
 
 namespace ServicesLib.Services
 {
-    public class LocalizationService : Service<LocalizationService>, ICrud<Localization>
+    public class LocalizationService : Service<LocalizationService, Localization>, IValidate<Localization>
     {
-        Localization ICrud<Localization>.Create(Localization entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Localization ICrud<Localization>.Delete(Localization entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Localization ICrud<Localization>.Read(Localization entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Localization ICrud<Localization>.Update(Localization entity)
+        public bool Validate(Localization localization)
         {
             throw new NotImplementedException();
         }

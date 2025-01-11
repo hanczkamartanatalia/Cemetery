@@ -9,6 +9,6 @@ namespace EntitiesLib.Interfaces
     public interface IUser
     {
         public string Login { get; set; }
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
     }
 }

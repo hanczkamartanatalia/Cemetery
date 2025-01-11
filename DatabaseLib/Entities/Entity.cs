@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntitiesLib.Interfaces
+namespace EntitiesLib.Entities
 {
-    public interface IEntity
+    public abstract class Entity
     {
         public int Id { get; set; }
         public bool IsDeleted { get; set; }

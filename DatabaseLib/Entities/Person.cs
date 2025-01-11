@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace EntitiesLib.Entities
 {
-    public abstract class Person : IEntity, IPersonality
+    public abstract class Person : Entity, IPersonality
     {
-        int IEntity.Id { get; set; }
-        bool IEntity.IsDeleted { get; set; }
-        string IPersonality.FirstName { get; set; } = default!;
-        string IPersonality.LastName { get; set; } = default!;
+        public string FirstName { get; set; } = default!;
+        public string LastName { get; set; } = default!;
     }
 }

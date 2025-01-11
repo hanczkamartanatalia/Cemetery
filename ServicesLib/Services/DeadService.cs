@@ -5,29 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValidatorLib;
 
 namespace ServicesLib.Services
 {
-    public class DeadService : Service<DeadService>, ICrud<Dead>
+    public class DeadService : Service<DeadService, Dead>, IValidate<Dead>
     {
-        Dead ICrud<Dead>.Create(Dead entity)
+        public bool Validate(Dead dead)
         {
-            throw new NotImplementedException();
-        }
-
-        Dead ICrud<Dead>.Delete(Dead entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Dead ICrud<Dead>.Read(Dead entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Dead ICrud<Dead>.Update(Dead entity)
-        {
-            throw new NotImplementedException();
+            bool result = true;
+            if (!BaseValidator.LengthValidator(dead.FirstName, 3, 20)) result = false;
+            if (!BaseValidator.LengthValidator(dead.LastName, 3, 20)) result = false;
+            if (!DateValidator.DateTimeBefore(dead.DateTimeDeath)) result = false;
+            return result;
         }
     }
 }
