@@ -7,9 +7,21 @@ namespace API.Controllers
     public class LocalizationController : BaseController<LocalizationService, Localization>
     {
         [HttpPost("/localization/create")]
-        public IActionResult Create([FromForm] Localization localization)
+        public new IActionResult Create([FromForm] Localization localization)
         {
             return base.Create(localization);
+        }
+
+        [HttpPost("/localization/edit")]
+        public new IActionResult Edit([FromForm] Localization localization)
+        {
+            return base.Edit(localization);
+        }
+
+        [HttpPost("/localization/delete")]
+        public new IActionResult Delete([FromForm] Localization localization)
+        {
+            return base.Delete(localization);
         }
     }
 }

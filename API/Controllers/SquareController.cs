@@ -11,5 +11,17 @@ namespace API.Controllers
         {
             return base.Create(square);
         }
+
+        [HttpPost("/square/edit")]
+        public new IActionResult Edit([FromForm] Square square)
+        {
+            return base.Edit(square);
+        }
+
+        [HttpPost("/square/delete")]
+        public new IActionResult Delete([FromForm] Square square)
+        {
+            return base.Delete(square);
+        }
     }
 }

@@ -29,5 +29,31 @@ namespace ServicesLib.Services
             _context.SaveChanges();
             return entity;
         }
+
+        public G? Edit(G edited)
+        {
+            G? fromDb = _context.Set<G>().First(x => x.Id == edited.Id);
+            if (fromDb == null) return null;
+            
+            bool isValid = Instance().Validate(edited);
+            if (!isValid) return null;
+
+            _context.Update(edited);
+            _context.SaveChanges();
+            return edited;
+        }
+
+        public G? Delete(G edited)
+        {
+            G? fromDb = _context.Set<G>().First(x => x.Id == edited.Id);
+            if (fromDb == null) return null;
+
+            if (edited.IsDeleted) return null;
+            
+            edited.IsDeleted = true;
+            _context.Update(edited);
+            _context.SaveChanges();
+            return edited;
+        }
     }
 }

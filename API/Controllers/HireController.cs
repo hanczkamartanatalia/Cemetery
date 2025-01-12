@@ -11,5 +11,17 @@ namespace API.Controllers
         {
             return base.Create(hire);
         }
+
+        [HttpPost("/hire/edit")]
+        public new IActionResult Edit([FromForm] Hire hire)
+        {
+            return base.Edit(hire);
+        }
+
+        [HttpPost("/hire/delete")]
+        public new IActionResult Delete([FromForm] Hire hire)
+        {
+            return base.Delete(hire);
+        }
     }
 }

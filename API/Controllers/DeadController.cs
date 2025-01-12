@@ -11,5 +11,17 @@ namespace API.Controllers
         {
             return base.Create(dead);
         }
+
+        [HttpPost("/dead/edit")]
+        public new IActionResult Edit([FromForm] Dead dead)
+        {
+            return base.Edit(dead);
+        }
+
+        [HttpPost("/dead/delete")]
+        public new IActionResult Delete([FromForm] Dead dead)
+        {
+            return base.Delete(dead);
+        }
     }
 }

@@ -13,5 +13,17 @@ namespace API.Controllers
             return base.Create(owner);
         }
 
+        [HttpPost("/owner/edit")]
+        public new IActionResult Edit([FromForm] Owner owner)
+        {
+            return base.Edit(owner);
+        }
+
+        [HttpPost("/owner/delete")]
+        public new IActionResult Delete([FromForm] Owner owner)
+        {
+            return base.Delete(owner);
+        }
+
     }
 }
