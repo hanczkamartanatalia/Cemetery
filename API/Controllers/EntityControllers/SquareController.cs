@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicesLib.Services;
 
-namespace API.Controllers
+namespace API.Controllers.EntityControllers
 {
-    public class SquareController : BaseController<SquareService, Square>
+    public class SquareController : EntityController<SquareService, Square>
     {
         [HttpPost("/square/create")]
         public new IActionResult Create([FromForm] Square square)
@@ -22,6 +22,12 @@ namespace API.Controllers
         public new IActionResult Delete([FromForm] Square square)
         {
             return base.Delete(square);
+        }
+
+        [HttpPost("/square/list")]
+        public new IActionResult List()
+        {
+            return base.List();
         }
     }
 }

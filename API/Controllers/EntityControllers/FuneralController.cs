@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicesLib.Services;
 
-namespace API.Controllers
+namespace API.Controllers.EntityControllers
 {
-    public class FuneralController : BaseController<FuneralService, Funeral>
+    public class FuneralController : EntityController<FuneralService, Funeral>
     {
         [HttpPost("/funeral/create")]
         public new IActionResult Create([FromForm] Funeral funeral)
@@ -22,6 +22,12 @@ namespace API.Controllers
         public new IActionResult Delete([FromForm] Funeral funeral)
         {
             return base.Delete(funeral);
+        }
+
+        [HttpPost("/funeral/list")]
+        public new IActionResult List()
+        {
+            return base.List();
         }
     }
 }

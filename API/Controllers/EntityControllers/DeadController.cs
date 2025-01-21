@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicesLib.Services;
 
-namespace API.Controllers
+namespace API.Controllers.EntityControllers
 {
-    public class DeadController : BaseController<DeadService, Dead>
+    public class DeadController : EntityController<DeadService, Dead>
     {
         [HttpPost("/dead/create")]
         public new IActionResult Create([FromForm] Dead dead)
@@ -22,6 +22,12 @@ namespace API.Controllers
         public new IActionResult Delete([FromForm] Dead dead)
         {
             return base.Delete(dead);
+        }
+
+        [HttpPost("/dead/list")]
+        public new IActionResult List()
+        {
+            return base.List();
         }
     }
 }

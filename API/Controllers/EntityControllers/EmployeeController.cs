@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicesLib.Services;
 
-namespace API.Controllers
+namespace API.Controllers.EntityControllers
 {
-    public class EmployeeController : BaseController<EmployeeService,Employee>
+    public class EmployeeController : EntityController<EmployeeService, Employee>
     {
         [HttpPost("/employee/create")]
         public new IActionResult Create([FromForm] Employee employee)
         {
-          return base.Create(employee);
+            return base.Create(employee);
         }
 
         [HttpPost("/employee/edit")]
@@ -22,6 +22,12 @@ namespace API.Controllers
         public new IActionResult Delete([FromForm] Employee employee)
         {
             return base.Delete(employee);
+        }
+
+        [HttpPost("/employee/list")]
+        public new IActionResult List()
+        {
+            return base.List();
         }
     }
 }

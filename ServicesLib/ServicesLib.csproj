@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DatabaseLib\EntitiesLib.csproj" />
+    <ProjectReference Include="..\HelpersLib\HelpersLib.csproj" />
     <ProjectReference Include="..\ValidatorLib\ValidatorLib.csproj" />
   </ItemGroup>
 

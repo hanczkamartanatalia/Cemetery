@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValidatorLib;
 
 namespace ServicesLib.Services
 {
@@ -12,7 +13,11 @@ namespace ServicesLib.Services
     {
         public bool Validate(Funeral funeral)
         {
-            throw new NotImplementedException();
+            bool result = true;
+
+            if (!DateValidator.IsDateTimeAfter(funeral.DateTime)) result = false;
+
+            return result;
         }
     }
 }

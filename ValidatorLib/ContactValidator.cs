@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ValidatorLib
 {
-    internal static class ContactValidator
+    public static class ContactValidator
     {
         public static bool IsValidPhoneNumber(string phoneNumber)
         {

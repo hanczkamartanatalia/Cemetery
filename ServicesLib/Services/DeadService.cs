@@ -1,4 +1,5 @@
 ﻿using EntitiesLib.Entities;
+using ServicesLib.Config;
 using ServicesLib.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace ServicesLib.Services
         public bool Validate(Dead dead)
         {
             bool result = true;
-            if (!BaseValidator.LengthValidator(dead.FirstName, 3, 20)) result = false;
-            if (!BaseValidator.LengthValidator(dead.LastName, 3, 20)) result = false;
-            if (!DateValidator.DateTimeBefore(dead.DateTimeDeath)) result = false;
+            if (!BaseValidator.LengthValidator(dead.FirstName, ParamsConfig.MIN_LENGTH_NAME, ParamsConfig.MAX_LENGTH_NAME)) result = false;
+            if (!BaseValidator.LengthValidator(dead.LastName, ParamsConfig.MIN_LENGTH_NAME, ParamsConfig.MAX_LENGTH_NAME)) result = false;
+            if (!DateValidator.IsDateTimeBefore(dead.DateTimeDeath)) result = false;
             return result;
         }
     }

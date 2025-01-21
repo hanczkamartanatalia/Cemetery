@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicesLib.Services;
 
-namespace API.Controllers
+namespace API.Controllers.EntityControllers
 {
-    public class OwnerController : BaseController<OwnerService, Owner>
+    public class OwnerController : EntityController<OwnerService, Owner>
     {
 
         [HttpPost("/owner/create")]
@@ -23,6 +23,13 @@ namespace API.Controllers
         public new IActionResult Delete([FromForm] Owner owner)
         {
             return base.Delete(owner);
+        }
+
+
+        [HttpPost("/owner/list")]
+        public new IActionResult List()
+        {
+            return base.List();
         }
 
     }

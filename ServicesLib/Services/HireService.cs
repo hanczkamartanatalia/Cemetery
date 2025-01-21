@@ -1,10 +1,12 @@
 ﻿using EntitiesLib.Entities;
+using ServicesLib.Config;
 using ServicesLib.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValidatorLib;
 
 namespace ServicesLib.Services
 {
@@ -12,7 +14,9 @@ namespace ServicesLib.Services
     {
         public bool Validate(Hire hire)
         {
-            throw new NotImplementedException();
+            bool result = true;
+            if (!DateValidator.IsDateAfter(hire.DateEnd)) result = false;
+            return result;
         }
     }
 }

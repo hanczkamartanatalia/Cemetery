@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ServicesLib.Services;
 
-namespace API.Controllers
+namespace API.Controllers.EntityControllers
 {
-    public class LocalizationController : BaseController<LocalizationService, Localization>
+    public class LocalizationController : EntityController<LocalizationService, Localization>
     {
         [HttpPost("/localization/create")]
         public new IActionResult Create([FromForm] Localization localization)

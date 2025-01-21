@@ -12,7 +12,7 @@ namespace ServicesLib.Services
     {
         public bool Validate(Square entity)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

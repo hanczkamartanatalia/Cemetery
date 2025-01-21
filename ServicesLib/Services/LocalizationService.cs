@@ -1,10 +1,7 @@
 ﻿using EntitiesLib.Entities;
+using ServicesLib.Config;
 using ServicesLib.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ValidatorLib;
 
 namespace ServicesLib.Services
 {
@@ -12,7 +9,9 @@ namespace ServicesLib.Services
     {
         public bool Validate(Localization localization)
         {
-            throw new NotImplementedException();
+            bool result = true;
+            if (!BaseValidator.LengthValidator(localization.Address, ParamsConfig.MIN_LENGTH_ADDRESS, ParamsConfig.MAX_LENGTH_ADDRESS)) result = false;
+            return result;
         }
     }
 }

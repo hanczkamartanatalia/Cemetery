@@ -1,4 +1,5 @@
 ﻿using EntitiesLib.Entities;
+using EntitiesLib.Interfaces;
 using ServicesLib.Config;
 using ServicesLib.Interfaces;
 
@@ -20,7 +21,7 @@ namespace ServicesLib.Services
             return new T();
         }
 
-        public G? Create(G entity)
+        public virtual G? Create(G entity)
         {
             bool isValid = Instance().Validate(entity);
             if (!isValid) return null;
@@ -30,30 +31,38 @@ namespace ServicesLib.Services
             return entity;
         }
 
-        public G? Edit(G edited)
+        public virtual G? Edit(G edited)
         {
-            G? fromDb = _context.Set<G>().First(x => x.Id == edited.Id);
+            G? fromDb = _context.Set<G>().FirstOrDefault(x => x.Id == edited.Id);
             if (fromDb == null) return null;
-            
+
             bool isValid = Instance().Validate(edited);
             if (!isValid) return null;
 
-            _context.Update(edited);
+            _context.Entry(fromDb).CurrentValues.SetValues(edited);
+
             _context.SaveChanges();
-            return edited;
+
+            return fromDb;
         }
 
-        public G? Delete(G edited)
+
+        public virtual G? Delete(G edited)
         {
-            G? fromDb = _context.Set<G>().First(x => x.Id == edited.Id);
+            G? fromDb = _context.Set<G>().FirstOrDefault(x => x.Id == edited.Id);
             if (fromDb == null) return null;
-
-            if (edited.IsDeleted) return null;
-            
-            edited.IsDeleted = true;
-            _context.Update(edited);
+            if (fromDb.IsDeleted) return null;
+            fromDb.IsDeleted = true;
             _context.SaveChanges();
-            return edited;
+            return fromDb;
         }
+
+
+        public virtual List<G> List()
+        {
+            return _context.Set<G>()
+                           .ToList();
+        }
+
     }
 }

@@ -13,15 +13,18 @@ namespace ServicesLib.Config
     public class AppDbContext : DbContext
     {
         public DbSet<Dead> Deads { get; set; }
+        public DbSet<DeadSquare> DeadSquares { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Funeral> Funerals { get; set; }
+        public DbSet<FuneralEmployee> FuneralEmployees { get; set; }
         public DbSet<Hire> Hires { get; set; }
         public DbSet<Localization> Localizations { get; set; }
         public DbSet<Owner> Owners { get; set; }
+        public DbSet<OwnerHire> OwnerHires { get; set; }
         public DbSet<Square> Squares { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Config.CONNECTING_STRING);
+            optionsBuilder.UseSqlServer(DatabaseConfig.CONNECTING_STRING);
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -47,6 +50,19 @@ namespace ServicesLib.Config
             //modelBuilder.Entity<VisitType>()
             //    .Property(v => v.Price)
             //    .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<FuneralEmployee>()
+                .HasOne(fe => fe.Employee)
+                .WithMany()
+                .HasForeignKey(fe => fe.EmployeeId)
+                .OnDelete(DeleteBehavior.Restrict); // or DeleteBehavior.NoAction
+
+            modelBuilder.Entity<FuneralEmployee>()
+                .HasOne(fe => fe.Funeral)
+                .WithMany()
+                .HasForeignKey(fe => fe.FuneralId)
+                .OnDelete(DeleteBehavior.Restrict); // or DeleteBehavior.NoAction
+
 
         }
 

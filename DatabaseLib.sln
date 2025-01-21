@@ -6,10 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntitiesLib", "DatabaseLib\EntitiesLib.csproj", "{960D30A9-DF04-4C13-AE6A-85ECA8C3CF2F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesLib", "ServicesLib\ServicesLib.csproj", "{C7FF8742-A758-4882-AECE-DF0117E23B87}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42AA551B-3A28-451C-AA83-6E91D93C64CF} = {42AA551B-3A28-451C-AA83-6E91D93C64CF}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{B38C2D9D-2A58-4DE3-8200-F9E594F49869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{B38C2D9D-2A58-4DE3-8200-F9E594F49869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidatorLib", "ValidatorLib\ValidatorLib.csproj", "{319D73A4-3442-417D-B9D5-79E94E67429E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidatorLib", "ValidatorLib\ValidatorLib.csproj", "{319D73A4-3442-417D-B9D5-79E94E67429E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpersLib", "HelpersLib\HelpersLib.csproj", "{42AA551B-3A28-451C-AA83-6E91D93C64CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +38,10 @@ Global
 		{319D73A4-3442-417D-B9D5-79E94E67429E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{319D73A4-3442-417D-B9D5-79E94E67429E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{319D73A4-3442-417D-B9D5-79E94E67429E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42AA551B-3A28-451C-AA83-6E91D93C64CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42AA551B-3A28-451C-AA83-6E91D93C64CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42AA551B-3A28-451C-AA83-6E91D93C64CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42AA551B-3A28-451C-AA83-6E91D93C64CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

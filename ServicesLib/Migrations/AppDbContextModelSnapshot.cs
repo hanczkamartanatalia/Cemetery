@@ -51,6 +51,34 @@ namespace ServicesLib.Migrations
                     b.ToTable("Deads");
                 });
 
+            modelBuilder.Entity("EntitiesLib.Entities.DeadSquare", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DeadId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("SquareId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeadId");
+
+                    b.HasIndex("SquareId");
+
+                    b.ToTable("DeadSquares");
+                });
+
             modelBuilder.Entity("EntitiesLib.Entities.Employee", b =>
                 {
                     b.Property<int>("Id")
@@ -104,6 +132,40 @@ namespace ServicesLib.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DeadId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("SquareId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeadId");
+
+                    b.HasIndex("SquareId");
+
+                    b.ToTable("Funerals");
+                });
+
+            modelBuilder.Entity("EntitiesLib.Entities.FuneralEmployee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FuneralId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -111,7 +173,11 @@ namespace ServicesLib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Funerals");
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("FuneralId");
+
+                    b.ToTable("FuneralEmployees");
                 });
 
             modelBuilder.Entity("EntitiesLib.Entities.Hire", b =>
@@ -200,6 +266,34 @@ namespace ServicesLib.Migrations
                     b.ToTable("Owners");
                 });
 
+            modelBuilder.Entity("EntitiesLib.Entities.OwnerHire", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("HireId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HireId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("OwnerHires");
+                });
+
             modelBuilder.Entity("EntitiesLib.Entities.Square", b =>
                 {
                     b.Property<int>("Id")
@@ -213,12 +307,104 @@ namespace ServicesLib.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<int>("LocalizationId")
+                        .HasColumnType("int");
+
                     b.Property<int>("MaxDead")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LocalizationId");
+
                     b.ToTable("Squares");
+                });
+
+            modelBuilder.Entity("EntitiesLib.Entities.DeadSquare", b =>
+                {
+                    b.HasOne("EntitiesLib.Entities.Dead", "Dead")
+                        .WithMany()
+                        .HasForeignKey("DeadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntitiesLib.Entities.Square", "Square")
+                        .WithMany()
+                        .HasForeignKey("SquareId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dead");
+
+                    b.Navigation("Square");
+                });
+
+            modelBuilder.Entity("EntitiesLib.Entities.Funeral", b =>
+                {
+                    b.HasOne("EntitiesLib.Entities.Dead", "Dead")
+                        .WithMany()
+                        .HasForeignKey("DeadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntitiesLib.Entities.Square", "Square")
+                        .WithMany()
+                        .HasForeignKey("SquareId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dead");
+
+                    b.Navigation("Square");
+                });
+
+            modelBuilder.Entity("EntitiesLib.Entities.FuneralEmployee", b =>
+                {
+                    b.HasOne("EntitiesLib.Entities.Funeral", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EntitiesLib.Entities.Funeral", "Funeral")
+                        .WithMany()
+                        .HasForeignKey("FuneralId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Funeral");
+                });
+
+            modelBuilder.Entity("EntitiesLib.Entities.OwnerHire", b =>
+                {
+                    b.HasOne("EntitiesLib.Entities.Hire", "Hire")
+                        .WithMany()
+                        .HasForeignKey("HireId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntitiesLib.Entities.Owner", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hire");
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("EntitiesLib.Entities.Square", b =>
+                {
+                    b.HasOne("EntitiesLib.Entities.Localization", "Localization")
+                        .WithMany()
+                        .HasForeignKey("LocalizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Localization");
                 });
 #pragma warning restore 612, 618
         }
